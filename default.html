@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-3.1.1.min_1.js"></script>
+<link rel="shortcut icon" type="image/png" href="/static/images/favicon-16x16.png?v2"/>
+
+
+
+
+<script type="text/javascript" src="js/175065_1.js" async defer></script>
+
+  <script src="js/jquery.browser_1.js"></script>
+  <script src="js/bluebird.min_1.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min_1.js"></script>
+  <script src="js/respond.min_1.js"></script>
+<![endif]-->
+<title>小律师</title>
+<meta name="format-detection" content="telephone=no">
+<div id="ie-browser-tip" style="display: none;position: fixed;width: 90%;height: 50px;line-height: 50px;font-size: 20px;top: 150px;margin-left: 5%;z-index: 100000;text-align: center;background-color: #f2dede;border: 2px solid #ebccd1;">您当前的浏览器版本过低，为了达到最佳的浏览体验，建议使用最新的QQ浏览器或者搜狗浏览器访问。<span style="float: right; padding-right: 20px; cursor: pointer;">X</span></div>
+<script type="text/javascript" charset="utf-8">
+(function() {
+  var version = parseInt($.browser.version, 10) || 0;
+  if ($.browser.ie || !$.browser.mobile && ((($.browser.chrome || $.browser.firefox) && version < 36) || ($.browser.safari && version < 8))) { $('#ie-browser-tip').show(); }
+  $('#ie-browser-tip span').click(function() {  $('#ie-browser-tip').hide();  });
+})()
+function XZ_GA(category, action, label) {
+  if (!window.gtag) { return; }
+  gtag('event', action, {event_category: category, event_label: label});
+}
+</script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/main-respond.min_1.css">
+
+  <script src="js/toastr.min_1.js"></script>
+  <script src="js/lodash.min_1.js"></script>
+  <script src="js/spin.min_1.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/toastr.min_1.css">
+
+  <link rel="stylesheet" type="text/css" href="css/ui.min_1.css">
+
+
+  <link rel="stylesheet" type="text/css" href="css/questionnaire.min_1.css">
+
+  <script src="js/avalon-2.2.5.min_1.js"></script>
+  <script src="js/typed.min_1.js"></script>
+</head>
+<body>
+  <div id='wx_logo' style='margin:0 auto;display:none;'>
+  <img src="picture/share_qq_01_1.png" />
+</div>
+
+  <div id="header">
+  <div style="position: relative; height: 100%;">
+    <div id="header__logo">
+      <a href="/">
+        <img class="logo-img" src="images/logowz.png">
+      </a>
+    </div>
+
+    <img id="navigation-img" src="picture/header_mobile_button_1.svg">
+
+    <ul id="header-links-container">
+      <li class="link__item">
+        <a href="/pricing/"><span class="header-link">首页</span></a>
+      </li>
+      <li class="link__item">
+        <a href="/professional/"><span class="header-link">产品</span></a>
+      </li>
+      <li class="link__item">
+        <a href="/custom/poster/"><span class="header-link">服务</span></a>
+      </li>
+      <!-- <li class="link__item">
+        <a href="/custom/" role="dropdown" data-target="#header-dropdown-menu1"><span class="header-link">定制设计</span></a>
+        <div role="dropdown-menu" id="header-dropdown-menu1">
+          <ul>
+            <li class="link__item"><a href="/custom/"><span class="header-link">定制设计</span></a></li>
+            <li class="link__item hidden-xs"><a href="/custom/poster/"><span class="header-link">海报定制</span></a></li>
+            <li class="link__item hidden-xs"><a href="/custom/package/"><span class="header-link">包装定制</span></a></li>
+            <li class="link__item hidden-xs"><a href="/custom/album/"><span class="header-link">画册定制</span></a></li>
+          </ul>
+        </div>
+      </li> -->
+      <li class="link__item">
+        <a href="/trademark/"><span class="header-link">价格</span></a>
+      </li>
+      <li class="link__item">
+        <a role="dropdown" data-target="#header-dropdown-menu2"><span class="header-link">关于小律</span></a>
+        <div role="dropdown-menu" id="header-dropdown-menu2">
+          <ul>
+            <li class="link__item"><a href="/about/"><span class="header-link">关于小律</span></a></li>
+            <li class="link__item hidden-xs"><a href="/about/"><span class="header-link">人工智能</span></a></li>
+            <li class="link__item hidden-xs"><a href="/about/#contact-container"><span class="header-link">联系我们</span></a></li>
+            <li class="link__item"><a href="/faq/"><span class="header-link">常见问题</span></a></li>
+          </ul>
+        </div>
+      </li>
+      
+      <li>
+        <a href="/login">
+          <div class="account-link">
+            <span class="account-link-text">登录/注册</span>
+          </div>
+        </a>
+      </li>
+      
+    </ul>
+
+  </div>
+  <div id="invisible-background"> </div>
+</div>
+
+<script>
+  $('#navigation-img').click(function(){
+    $('#header-links-container').fadeIn();
+    $('#invisible-background').show();
+    $('#invisible-background').width($('body').width());
+    $('#invisible-background').height($('body').height());
+  });
+  $('#invisible-background, .header-link').click(function(){
+    if ($('#navigation-img').css('display') !== 'none') {
+      $('#header-links-container').fadeOut();
+      $('#invisible-background').hide();
+    }
+  });
+  $('#header-links-container [role="dropdown"]').hover(
+    function() {
+      $($(this).data('target') + '[role="dropdown-menu"]').slideDown(200);
+    },
+    function(ev) {
+      var target = $($(this).data('target') + '[role="dropdown-menu"]');
+      var pos = target.offset();
+      var rect = {
+        x0: pos.left,
+        y0: Math.max(pos.top-$(this).offset().top, 0),
+        x1: pos.left + target.width(),
+        y1: pos.top + target.height()
+      }
+      if (!(ev.clientX > rect.x0 && ev.clientX < rect.x1 &&
+          ev.clientY > rect.y0 && ev.clientY < rect.y1)) {
+        $($(this).data('target') + '[role="dropdown-menu"]').slideUp(200);
+      }
+    }
+  );
+  $('#header-links-container [role="dropdown-menu"]').hover(
+    function() { },
+    function() {
+      $(this).slideUp(200);
+    }
+  );
+</script>
+
+  <div id="generator" ms-controller="generator" style="display: none;">
+    <div id="generator__main">
+      <div id="generator__title">
+          <img id="title__brand" src="images/logo.png"> 
+          <div class="title__wrapper">
+            <div id="title__text" class="title__text" style="display: none;">
+              <div name="title__placeholder" ms-html="@title"></div>
+              <div name="title"></div>
+            </div>
+            <div id="title__text1" class="title__text" style="visibility: hidden;">
+              <div name="title__placeholder"></div>
+              <div name="title"></div>
+            </div>
+            <div id="title__text2" class="title__text" style="visibility: hidden;">
+              <div name="title__placeholder"></div>
+              <div name="title"></div>
+            </div>
+            <div id="title__text3" class="title__text" style="visibility: hidden;">
+              <div name="title__placeholder"></div>
+              <div name="title"></div>
+            </div>
+          </div>
+      </div>
+      <div id="generator__body">
+        <div id="page0" class="page">
+          <div class="row">
+            <div class="input label">
+              <input name="name" placeholder="公司名称" ms-duplex="@_name" ms-keypress="@onKeyPress($event)" spellcheck="false" maxlength="15" />
+              <label>请输入贵单位公司名称</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input label">
+              <input name="slogan" placeholder="股权人数" ms-duplex="@_slogan" ms-keypress="@onKeyPress($event)" spellcheck="false" maxlength="30" />
+              <label>请输入需要分配股权的人数</label>
+            </div>
+          </div>
+        </div>
+        <div id="page1" class="page">
+          <div class="row">
+            <div class="industry__container">
+              <div ms-for="industry in @page1Industry" ms-class="['industry__selection', industry.type === @page1Selection ? 'selected' : '']">
+                <div class="industry__item" ms-click="@selectIndustry(industry.type)">
+                  <div ms-html="industry.svg" class="industry__icon"></div>
+                  <div ms-text="industry.title" class="industry__name"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="page2" class="page">
+          <div class="row">
+            <div class="input label">
+              <textarea name="description" placeholder="范例：专注于人工智能与股权激励的结合，提供用户专业的股权激励企划服务" ms-duplex="@_description" ms-keypress="@onKeyPress($event)" spellcheck="false"></textarea>
+            </div>
+          </div>
+        </div>
+        <div id="page3" class="page">
+          <div class="row">
+            <ul>
+              <li ms-for="logo in @page3Logos">
+                <div ms-class="[@page3Selections[logo] ? 'selected' : '']">
+                  <img ms-attr="{src: '/static/images/questionnaire_templates/zh-CN/'+logo}" alt="" class="logo__inspiration" ms-click="@toggleLayout(logo)" />
+                  <img class="check" src="picture/check_1.svg" alt="" ms-click="@toggleLayout(logo)" />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="page4" class="page">
+          <div class="row">
+            <ul>
+              <li ms-for="color in @page4Colors" class="unselectable">
+                <div ms-class="['color__selection', color, (@page4Selections[color] ? 'selected' : '')]">
+                  <div class="color__bg">
+                    <div class="color__icon" ms-click="@toggleColor(color)">
+                      <div class="color__wrapper">
+                        <div class="color__name" ms-text="@page4ColorsIntro[color].name"></div>
+                        <div class="color__intro" ms-text="@page4ColorsIntro[color].intro"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="page5" class="page">
+          <div class="row">
+            <ul id="icon__selected">
+              <li ms-for="icon in _icons">
+                <div ms-class="['icon--item', icon ? '' : 'empty']" ms-click="@unselectIcon(icon)">
+                  <i></i>
+                  <img ms-attr="{src: @page5Icons[icon] || ''}" alt="">
+                </div>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div id="spin" ms-if="!@iconSearchFinish"></div>
+            <ul id="icon__detail" ms-visible="@iconSearchFinish">
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="generator__step" class="unselectable">
+      <div class="step__actions">
+        <div class="step__item" ms-click="@goBack" ms-css="@backVisible"><span>&lt; 返回上一步</span></div>
+        <div id="submit0" ms-class="['button', 'step__item', @page0Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===0">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div id="submit1" ms-class="['button', 'step__item', @page1Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===1">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div id="submit2" ms-class="['button', 'step__item', @page2Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===2">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div id="submit3" ms-class="['button', 'step__item', @page3Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===3">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div id="submit4" ms-class="['button', 'step__item', @page4Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===4">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div id="submit5" ms-class="['button', 'step__item', @page5Valid ? '' : 'disabled']" ms-click="@submit" ms-if="@step===5">
+          <span class="button__text" ms-text="@submitText()"></span>
+        </div>
+        <div class="step__item" ms-click="@skip" ms-css="@skipVisible"><span><span>跳过 &gt;</span></span></div>
+      </div>
+      <div class="step__progress">
+        <div class="progress">
+          <div class="bar"></div>
+          <div class="label"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript">
+
+avalon.config({
+  debug: false,
+  interpolate: ['{?','?}']
+});
+
+$(function(){
+  
+})
+
+var questionnaire_config = {
+  t: 'Ijg0ZjhmN2RmYTllNTU4YWMyZWUxYmFiYWE2ODlmZjI2N2JkMjllYzUi.DcGXWw.4f37z2wOw3ZUWWdiIHMRxBy6_Hk',
+  iconUrl: '/api/icons/query',
+  downUrl: '/api/icons/down',
+  sessionUrl: '/createSession',
+  processingUrl: '/processing',
+  
+  login: false,
+  
+  textCheck: "FALSE".toUpperCase(),
+  name: "" || '',
+  slogan: "" || '',
+  description: "" || ''
+}
+var _i18n_text = {
+  step0: [
+    "您好，我是效率团队新研发的智能机器人，大家可以叫我小律",
+    "我能帮您设计出最适合你公司的股权激励方案",
+    "快来试一试吧"
+   
+  ],
+  step1: [
+    "请告诉我您的<span>公司名称</span>和股权分配的<span>数量</span>吧",
+  ],
+  step2: [
+    '请依据您的公司经营內容选取最适合的分类',
+  ],
+  step3: [
+    "\u63a5\u7740\u8bf7\u7528\u003cspan\u003e\u4e00\u53e5\u8bdd\u003c/span\u003e\u6216\u662f\u003cspan\u003e\u4e00\u6bb5\u6587\u5b57\u003c/span\u003e\u63cf\u8ff0\u60a8\u7684\u54c1\u724c\u5427\uff01",
+  ],
+  step4: [
+    "\u73b0\u5728\u8bf7\u60a8\u9009\u62e9 \u003cspan\u003e5\u003c/span\u003e \u4e2a\u4ee5\u4e0a\u60a8\u559c\u6b22\u7684LOGO",
+  ],
+  step5: [
+    "\u73b0\u5728\u60a8\u53ef\u4ee5\u9009\u62e9\u504f\u597d\u7684\u003cspan\u003e\u54c1\u724c\u8272\u7cfb\u003c/span\u003e\uff0c\u6216\u8005\u9009\u62e9\u8df3\u8fc7\u7531\u6211\u4eec\u6765\u63a8\u8350\uff01",
+  ],
+  step6: [
+    "\u6700\u540e\uff0c\u60a8\u53ef\u4ee5\u6311\u9009 \u003cspan\u003e3\u003c/span\u003e \u4e2a\u559c\u6b22\u7684\u56fe\u6807",
+  ],
+  button: {
+    enter: "\u8bf7\u5b8c\u6210\u586b\u5199",
+    next: "\u4e0b\u4e00\u6b65",
+    pick1: "\u8bf7\u5b8c\u6210\u9009\u53d6({count}/5)",
+    pick2: "\u8bf7\u5b8c\u6210\u9009\u53d6",
+    submit: "\u63d0\u4ea4"
+  },
+  toastr: {
+    slash: "\u62b1\u6b49\u3002\u76ee\u524d\u8f93\u5165\u5185\u5bb9\u4e0d\u80fd\u5305\u542b\u659c\u7ebf\u5b57\u7b26",
+    en_max: "\u62b1\u6b49\u3002\u82f1\u6587\u4e0d\u53ef\u8d85\u8fc7{count}\u4e2a\u5b57\u6bcd",
+    cn_max: "\u62b1\u6b49\u3002\u4e2d\u6587\u4e0d\u53ef\u8d85\u8fc7{count}\u4e2a\u5b57",
+    retry: "\u63d0\u4ea4\u5931\u8d25\uff0c\u8bf7\u5c1d\u8bd5\u91cd\u65b0\u751f\u6210\u3002",
+    invalid_char: "\u62b1\u6b49\u3002\u76ee\u524d\u4ec5\u652f\u6301\u4e2d\u6587\u53ca\u82f1\u6587\uff0c\u8bf7\u4e0d\u8981\u8f93\u5165\u5176\u4ed6\u8bed\u8a00\u6216\u7279\u6b8a\u7b26\u53f7"
+  },
+  color: {
+    black: {
+      name: "\u9ed1\u8272\u7cfb",
+      intro: "\u4e13\u4e1a\u3001\u521b\u610f\u3001\u6267\u7740"
+    },
+    yellow: {
+      name: "\u9ec4\u8272\u7cfb",
+      intro: "\u4fe1\u5fc3\u3001\u806a\u660e\u3001\u5e0c\u671b"
+    },
+    purple: {
+      name: "\u7d2b\u8272\u7cfb",
+      intro: "\u6d6a\u6f2b\u3001\u4f18\u96c5\u3001\u795e\u79d8"
+    },
+    orange: {
+      name: "\u6a59\u8272\u7cfb",
+      intro: "\u4eb2\u5207\u3001\u6d3b\u529b\u3001\u5f00\u6717"
+    },
+    brown: {
+      name: "\u5496\u5561\u8272\u7cfb",
+      intro: "\u5b89\u5b9a\u3001\u6c89\u7a33\u3001\u5e73\u548c"
+    },
+    green: {
+      name: "\u7eff\u8272\u7cfb",
+      intro: "\u65b0\u9c9c\u3001\u77e5\u6027\u3001\u73af\u4fdd"
+    },
+    blue: {
+      name: "\u84dd\u8272\u7cfb",
+      intro: "\u79d1\u6280\u3001\u5b89\u5b9a\u3001\u6c89\u7a33"
+    },
+    red: {
+      name: "\u7ea2\u8272\u7cfb",
+      intro: "\u70ed\u60c5\u3001\u81ea\u4fe1\u3001\u7f8e\u4e3d"
+    }
+  }
+};
+</script>
+
+  <script src="js/questionnaire.min_1.js"></script>
+
+</html>

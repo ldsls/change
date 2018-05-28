@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-3.1.1.min_1.js"></script>
+
+
+
+  <script src="js/jquery.browser_1.js"></script>
+  <script src="js/bluebird.min_1.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min_1.js"></script>
+  <script src="js/respond.min_1.js"></script>
+<![endif]-->
+<title>小律酱 </title>
+<meta name="description" content="只需回答几个问题">
+<meta name="baidu-site-verification" content="4" />
+<meta name="format-detection" content="telephone=no">
+<div id="ie-browser-tip" style="display: none;position: fixed;width: 90%;height: 50px;line-height: 50px;font-size: 20px;top: 150px;margin-left: 5%;z-index: 100000;text-align: center;background-color: #f2dede;border: 2px solid #ebccd1;">您当前的浏览器版本过低，为了达到最佳的浏览体验，建议使用最新的QQ浏览器或者搜狗浏览器访问。<span style="float: right; padding-right: 20px; cursor: pointer;">X</span></div>
+<script type="text/javascript" charset="utf-8">
+(function() {
+  var version = parseInt($.browser.version, 10) || 0;
+  if ($.browser.ie || !$.browser.mobile && ((($.browser.chrome || $.browser.firefox) && version < 36) || ($.browser.safari && version < 8))) { $('#ie-browser-tip').show(); }
+  $('#ie-browser-tip span').click(function() {  $('#ie-browser-tip').hide();  });
+})()
+function XZ_GA(category, action, label) {
+  if (!window.gtag) { return; }
+  gtag('event', action, {event_category: category, event_label: label});
+}
+</script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/main-respond.min_1.css">
+
+
+  <link rel="stylesheet" type="text/css" href="css/processing.min.css">
+
+  <script src="js/toastr.min_1.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/toastr.min_1.css">
+</head>
+
+<body>
+
+<canvas id="canvas-element" style="background-color: #a5d2d1; width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+  <p>Your browser doesn't support canvas.</p>
+</canvas>
+  <div id="header__logo">
+    <a href="/">
+<!--      <img class="logo-img" src="picture/xzlogo_logo_w.svg">-->
+    </a>
+  </div>
+  <div class="container-wrapper">
+
+    <div name="progress-container" class="progress1">
+      <div class="progress-wrapper" id="progress-1">
+        <img src="picture/w01.png"> <span class="processing-text">公司数据数据分析中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-2">
+        <img src="picture/w02.png"> <span class="processing-text" >股权数据智能比对中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-3">
+        <img src="picture/w03.png"> <span class="processing-text">企业类型匹配中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-4">
+        <img src="picture/w04.png"> <span class="processing-text">股权分配计算中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-5">
+        <img src="picture/w05.png"> <span class="processing-text">激励方案规划中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-6">
+        <img src="picture/w06.png"> <span class="processing-text">报告结果优化中</span>
+      </div>
+      <div class="progress-wrapper" id="progress-7">
+        <img src="picture/w07.png"> <span class="processing-text">档案输出准备中</span>
+      </div>
+
+      <div id="processing-num-container-mobile" class="visible-xs-block">
+        <img name="processing-robot-img" src="images/logo.png">
+        <span name="processing-num"></span>
+      </div>
+      <div id="processing-num-container" class="moving">
+        <img name="processing-robot-img" src="images/logo.png" class="hidden-xs">
+        <div id="highlight-box"> </div>
+        <span name="processing-num" class="hidden-xs"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="result_templates" style="display: none;"></div>
+</body>
+<script>
+  
+
+  var data = {"pending_task_count": 0, "sid": "5ae16f1c6145150098af3580"};
+
+  //var updating = data;
+  var percent = 0;
+  var curr_progress = 0;
+
+  function pad ( val ) { return val > 9 ? val : "0" + val; }
+
+  
+  var _t0 = 10;
+  var _t1;
+  try { _t1 = _t0 / 100 * 1000; }
+  catch (e) { _t1 = 250; }
+  
+  if (_t1 < 60) { _t1 = 60; }
+  setInterval( function(){
+    if (percent < 99){
+      if (parseInt(percent/15) > curr_progress){
+        var movingDistance = "+=" + $('.progress-wrapper').height();
+        curr_progress+=1;
+        $('.moving').animate({
+          top: movingDistance
+        }, 500, function() {
+          $('[name="progress-container"]').attr('class', 'progress'+(curr_progress+1));
+        });
+        console.log(curr_progress);
+      }
+      $('[name="processing-num"]').html(pad(++percent)+'%');
+    }else{
+		window.location = 'result.html';
+	}
+  }, _t1);
+
+
+  if (!window.isMobile){
+    var particles = [];
+
+    // color: Math.random() > .5 ? "#000000" : Math.random() > .5 ? "#FF0000" : "#FFFF00"
+
+    // Returns a number representing a quarter of the current viewport width (in pixels),
+    //  rounded down to the nearest integer. Manipulating this number to be higher will
+    //  will increase the number of dots in the animation.
+    var dots = Math.floor(window.innerWidth/25);
+
+    // Populates 'particles' array with objects containing 
+    for( var i = 0; i < dots; i++ ) {
+      particles.push( {
+        x: Math.random()*window.innerWidth,
+        y: Math.random()*window.innerHeight,
+        vx: 0,
+        vy: -1*Math.random()-Math.random()-0.05,
+        history: [],
+        size: 2,
+        color: "#FBB03B"
+      } );
+    }
+
+    var mouse = { x: 0, y: 0 };
+
+    var canvas = document.getElementById('canvas-element');
+
+    var points = [],
+      width = canvas.width,
+      height = canvas.height,
+      intsy;
+
+    var MAX_DIST_2 = 100*100;
+    var circRadius = 4;//pix
+
+    if (canvas && canvas.getContext) {
+      var context = canvas.getContext('2d');
+      Initialize();
+    }
+
+    function Initialize() {
+      canvas.addEventListener('mousemove', MouseMove, false);
+      window.addEventListener('resize', ResizeCanvas, false);
+      setInterval( TimeUpdate, 20 );
+      context.beginPath();
+      ResizeCanvas();
+    }
+
+    function TimeUpdate(e) {
+
+      context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      var point, i, j, ptCons = new Array(points.length);
+
+      for(i = 0; i < particles.length; i++)
+      {
+        ptCons[i] = new Array(particles.length);
+
+        for(j = 0; j < particles.length; j++)
+        {
+          ptCons[i][j] = 0;
+        }
+      }
+
+      for( var i = 0; i < particles.length; i++ ) {
+
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+
+        if( particles[i].x > window.innerWidth ) {
+          particles[i].vx = -1-Math.random();
+        }
+        else if ( particles[i].x < 0 ) {
+          particles[i].vx = 1+Math.random();
+        }
+        else {
+          particles[i].vx *= 1 + (Math.random()*0.005);
+        }
+
+        if( particles[i].y > window.innerHeight ) {
+          particles[i].vy = -1-Math.random();
+        }
+        else if ( particles[i].y < 0 ) {
+          particles[i].y = window.innerHeight;
+          particles[i].vy = 1;
+        }
+        else {
+          particles[i].vy *= 1;
+        }
+
+        context.strokeStyle = particles[i].color;
+        context.beginPath();
+
+        var min_dist_2 = MAX_DIST_2;
+
+        particles.forEach(function(pt, j){
+          var dist_2 = (Math.pow(pt.x - particles[i].x, 2) + Math.pow(pt.y - particles[i].y, 2));
+
+          if(dist_2 < min_dist_2 && pt != particles[i])
+            min_dist_2 = dist_2;
+
+          if(pt == particles[i] || dist_2 > MAX_DIST_2 || ptCons[i][j])
+            return;
+
+          context.moveTo(particles[i].x, particles[i].y);
+          var dirx = particles[i].x > pt.x ? particles[i].x : pt.x;
+          var diry = particles[i].y < pt.y ? particles[i].y : pt.y;
+          context.quadraticCurveTo(dirx, diry, pt.x, pt.y);
+          context.strokeStyle = 'rgba(251,176,59,' + (1 - dist_2 / MAX_DIST_2) +' )'
+          ptCons[i][j] = 1;
+          ptCons[j][i] = 1;
+        });
+        context.stroke();
+
+        var distanceFactor = DistanceBetween( mouse, particles[i] );
+        distanceFactor = Math.max( Math.min( 15 - ( distanceFactor / 10 ), 10 ), 1 );
+
+        context.fillStyle = particles[i].color;
+        context.beginPath();
+        context.arc(particles[i].x,particles[i].y,particles[i].size*distanceFactor,0,Math.PI*2,true);
+        context.closePath();
+        context.fill();
+
+      }
+    }
+
+    function MouseMove(e) {
+      mouse.x = e.layerX;
+      mouse.y = e.layerY;
+    }
+
+    function Draw( x, y ) {
+      context.strokeStyle = '#FBB03B';
+      context.lineWidth = 4;
+      context.lineTo(x, y);
+      context.stroke();
+    }
+
+    function ResizeCanvas(e) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function DistanceBetween(p1,p2) {
+      var dx = p2.x-p1.x;
+      var dy = p2.y-p1.y;
+      return Math.sqrt(dx*dx + dy*dy);
+    }
+  }
+</script>
+
+</html>
